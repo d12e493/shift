@@ -1,0 +1,37 @@
+spring:
+  data:
+    rest:
+      defaultMediaType: application/json
+  datasource:
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/shift?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+    username: root
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+server:
+  servlet:
+    contextPath: /api
+  tomcat:
+    uri-encoding: UTF-8
+logging:
+  level:
+    org:
+      springframework:
+        web: ERROR
+    com:
+      davis:
+        shift: info
+  pattern:
+    console: \%d{yyyy-MM-dd HH:mm:ss} - %msg%n\
