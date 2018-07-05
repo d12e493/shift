@@ -1,10 +1,8 @@
 package com.davis.shift.dao;
 
 import com.davis.shift.entity.User;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-@RepositoryRestResource
-public interface UserRepository extends PagingAndSortingRepository<User,String> {
+public interface UserRepository extends JpaRepository<User,String> {
     User findByEmail(String email);
 }
