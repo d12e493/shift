@@ -1,7 +1,6 @@
 spring:
-  data:
-    rest:
-      defaultMediaType: application/json
+  hateoas:
+    use-hal-as-default-json-media-type: false
   datasource:
     password: 1234
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -20,6 +19,9 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+  data:
+    rest:
+      defaultMediaType: application/json
 server:
   servlet:
     contextPath: /api
