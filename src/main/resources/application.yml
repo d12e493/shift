@@ -6,6 +6,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost/shift?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
     username: root
+    continue-on-error: true
   http:
     encoding:
       charset: UTF-8
@@ -32,8 +33,13 @@ logging:
     org:
       springframework:
         web: ERROR
+      hibernate:
+        SQL: ERROR
+        type:
+          descriptor:
+            sql: ERROR
     com:
       davis:
-        shift: info
+        shift: INFO
   pattern:
     console: \%d{yyyy-MM-dd HH:mm:ss} - %msg%n\

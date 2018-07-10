@@ -5,9 +5,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class UserBO {
-    private String id;
+public class RegionBO {
     private String name;
-    private String email;
-    private String password;
 }

@@ -3,11 +3,17 @@ package com.davis.shift.bo;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalTime;
+
 @Setter
 @Getter
-public class UserBO {
+public class CategoryBO {
     private String id;
+
     private String name;
-    private String email;
-    private String password;
+
+    private LocalTime startAt;
+
+    private LocalTime endAt;
+
 }

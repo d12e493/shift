@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 @Setter
@@ -18,7 +19,11 @@ public class WorkDay extends BaseEntity{
     private int month;
     private int day;
 
+    /*
+    是否要上班，１要上班 ０放假
+     */
+    private boolean work = false;
+
     @Column(name = "dt")
-    @Temporal(TemporalType.DATE)
-    private Calendar dt;
+    private LocalDate dt;
 }
