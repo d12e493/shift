@@ -31,8 +31,6 @@ public class UserRepositoryTest {
     @PersistenceContext
     private EntityManager em;
 
-    JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-
     @Autowired
     private UserRepository userRepository;
 
@@ -59,6 +57,8 @@ public class UserRepositoryTest {
     public void findAllBySQL() {
         QUser user = QUser.user;
 
+        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+
         List userList = queryFactory.selectFrom(user)
                 .select(user.email, user.name)
                 .orderBy(user.email.desc())
@@ -74,7 +74,6 @@ public class UserRepositoryTest {
                 }).collect(Collectors.toList());
 
         System.out.println(ReflectionToStringBuilder.toString(userList));
-
 
         QueryResults<Tuple> userResult = queryFactory.selectFrom(user)
                 .select(user.email, user.name)
