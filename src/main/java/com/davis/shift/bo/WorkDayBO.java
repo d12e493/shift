@@ -11,4 +11,5 @@ public class WorkDayBO {
     private String name;
     private boolean work = false;
     private LocalDate dt;
+    private int day;
 }

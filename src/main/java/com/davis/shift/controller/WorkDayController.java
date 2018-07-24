@@ -2,6 +2,8 @@ package com.davis.shift.controller;
 
 import com.davis.shift.bo.CommonResponse;
 import com.davis.shift.bo.WorkDayBO;
+import com.davis.shift.bo.work.WorkMonth;
+import com.davis.shift.bo.work.WorkYear;
 import com.davis.shift.dao.WorkDayRepository;
 import com.davis.shift.entity.WorkDay;
 import com.davis.shift.util.DateTimeUtils;
@@ -10,9 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -85,6 +85,7 @@ public class WorkDayController extends CommonController<WorkDayBO> {
             WorkDayBO bo = new WorkDayBO();
             bo.setDt(tempDate);
             bo.setWork(true);
+            bo.setDay(tempDate.getDayOfMonth());
 
             String tempDateKey = DateTimeUtils.fromDate(tempDate);
 
@@ -105,6 +106,45 @@ public class WorkDayController extends CommonController<WorkDayBO> {
             tempDate = tempDate.plusDays(1);
         }
 
-        return new CommonResponse().setContent(workBoList);
+        return new CommonResponse().setContent(parseToWorkNode(workBoList));
+    }
+
+    private List<WorkYear> parseToWorkNode(List<WorkDayBO> workDayBoList){
+
+        List<WorkYear> yearList = new ArrayList<>();
+
+        Map<Integer,List<WorkDayBO>> workMapGroupByYear = workDayBoList.stream().collect(
+                Collectors.groupingBy(
+                        x->x.getDt().getYear(), Collectors.toList()
+                )
+        );
+
+        workMapGroupByYear.forEach((year,list)->{
+
+            WorkYear workYear = new WorkYear();
+            workYear.setYear(year);
+
+            List<WorkMonth> monthList = new ArrayList<>();
+
+            Map<Integer,List<WorkDayBO>> workMapGroupByMonth = list.stream().collect(
+                    Collectors.groupingBy(
+                            x->x.getDt().getMonthValue(), Collectors.toList()
+                    )
+            );
+
+            workMapGroupByMonth.forEach((month,dayList)->{
+                WorkMonth workMonth = new WorkMonth();
+                workMonth.setMonth(month);
+                workMonth.setDayList(dayList);
+
+                monthList.add(workMonth);
+            });
+
+            workYear.setMonthList(monthList);
+
+            yearList.add(workYear);
+        });
+
+        return yearList;
     }
 }

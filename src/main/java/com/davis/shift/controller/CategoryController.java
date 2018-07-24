@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path="/categories")
-public class CategoryController  extends CommonController<CategoryBO>{
+public class CategoryController extends CommonController<CategoryBO>{
 
     @Autowired
     private CategoryRepository categoryRepository;

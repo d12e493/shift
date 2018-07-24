@@ -6,6 +6,8 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Calendar;
 
 @Setter
@@ -28,16 +30,13 @@ public class Arrange extends BaseEntity implements Serializable{
     private int day;
 
     @Column(name = "dt",nullable = false)
-    @Temporal(TemporalType.DATE)
-    private Calendar dt;
+    private LocalDate dt;
 
     @Column(name = "start_at",nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar startAt;
+    private LocalTime startAt;
 
     @Column(name = "end_at",nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    private Calendar endAt;
+    private LocalTime endAt;
 
     @Column(name = "duration_minute",nullable = false)
     private int durationMinute;

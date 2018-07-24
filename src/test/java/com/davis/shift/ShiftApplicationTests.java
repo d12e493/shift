@@ -11,6 +11,7 @@ public class ShiftApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		System.out.println("contextLoads");
 	}
 
 }

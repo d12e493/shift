@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.beans.BeanUtils;
+import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -49,4 +51,19 @@ public class BaseEntity implements Serializable{
     @Column(name = "deleted_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar deletedAt;
+
+    public <T> T toObj(Class<T> clazz){
+        try{
+
+            T t = clazz.newInstance();
+
+            BeanUtils.copyProperties(this,t);
+
+            return t;
+
+        }catch(Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
