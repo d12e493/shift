@@ -1,0 +1,45 @@
+spring:
+  hateoas:
+    use-hal-as-default-json-media-type: false
+  datasource:
+    password: 1234
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=MYSQL
+    username: root
+    continue-on-error: true
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
+  jpa:
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  data:
+    rest:
+      defaultMediaType: application/json
+server:
+  servlet:
+    contextPath: /api
+  tomcat:
+    uri-encoding: UTF-8
+logging:
+  level:
+    org:
+      springframework:
+        web: ERROR
+      hibernate:
+        SQL: ERROR
+        type:
+          descriptor:
+            sql: ERROR
+    com:
+      davis:
+        shift: INFO
+  pattern:
+    console: \%d{yyyy-MM-dd HH:mm:ss} - %msg%n\

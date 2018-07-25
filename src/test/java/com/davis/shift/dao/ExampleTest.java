@@ -1,5 +1,6 @@
 package com.davis.shift.dao;
 
+import com.davis.shift.ShiftApplicationTests;
 import com.davis.shift.entity.QUser;
 import com.davis.shift.entity.User;
 import com.querydsl.core.QueryResults;
@@ -14,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityManager;
@@ -24,9 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class UserRepositoryTest {
+public class ExampleTest extends ShiftApplicationTests {
 
     @PersistenceContext
     private EntityManager em;
